@@ -28,4 +28,10 @@ import java.util.NoSuchElementException;
         }
         return userRepository.save(userToCreate);
     }
+
+    @Override
+    public void delete(Long id) {
+        User dbUser = this.findById(id);
+        this.userRepository.delete(dbUser);
+    }
 }

@@ -30,4 +30,14 @@ public class UserController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userCreated.getId()).toUri();
         return ResponseEntity.created(location).body(userCreated);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<User> delete(@PathVariable Long id){
+       if(userService.findById(id) != null){
+           var user = userService.findById(id);
+           userService.delete(id);
+           return ResponseEntity.ok(user);
+       }
+       return null;
+    }
 }
